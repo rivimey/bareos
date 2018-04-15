@@ -27,6 +27,23 @@ IF(HAVE_WIN32)
    add_definitions(-DMS_WIN${WINDOWS_BITS})
 ENDIF()
 
+include_directories(
+   ${PTHREAD_INCLUDE_DIRS}
+   ${FASTLZ_INCLUDE_DIRS}
+   ${ZLIB_INCLUDE_DIRS}
+   ${ACL_INCLUDE_DIRS}
+   ${LZO2_INCLUDE_DIRS}
+   ${CAP_INCLUDE_DIRS}
+   ${WRAP_INCLUDE_DIRS}
+)
+include_directories(BEFORE ${OPENSSL_INCLUDE_DIRS} ${Readline_INCLUDE_DIR} )
+
+MESSAGE( STATUS "src/plugins/stored build: " )
+get_property(got_d_include_dirs DIRECTORY PROPERTY INCLUDE_DIRECTORIES)
+foreach(_dir IN LISTS got_d_include_dirs)
+   message(STATUS "  -I ${_dir}")
+endforeach()
+
 
 
 add_library(autoxflate-sd MODULE autoxflate-sd.cc)

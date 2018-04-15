@@ -17,19 +17,36 @@
 #   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 #   02110-1301, USA.
 
+include_directories(../include ..
+   ${PTHREAD_INCLUDE_DIRS}
+   ${FASTLZ_INCLUDE_DIRS}
+   ${ZLIB_INCLUDE_DIRS}
+   ${ACL_INCLUDE_DIRS}
+   ${LZO2_INCLUDE_DIRS}
+   ${CAP_INCLUDE_DIRS}
+   ${WRAP_INCLUDE_DIRS}
+   )
+include_directories(BEFORE ${OPENSSL_INCLUDE_DIRS} )
+
+MESSAGE( STATUS "src/lib build: " )
+get_property(got_d_include_dirs DIRECTORY PROPERTY INCLUDE_DIRECTORIES)
+foreach(_dir IN LISTS got_d_include_dirs)
+   message(STATUS "  -I ${_dir}")
+endforeach()
+
 set(INCLUDE_FILES ../include/baconfig.h ../include/bareos.h
-   ../include/bc_types.h ../include/config.h
-   ../include/jcr.h ../include/version.h
-   address_conf.h alist.h attr.h base64.h berrno.h
-   bits.h bpipe.h breg.h bregex.h bsock.h
+		../include/bc_types.h ../include/config.h
+		../include/jcr.h ../include/version.h
+		address_conf.h alist.h attr.h base64.h berrno.h
+		bits.h bpipe.h breg.h bregex.h bsock.h
    bsock_tcp.h btime.h btimers.h cbuf.h
-   crypto.h crypto_cache.h devlock.h dlist.h fnmatch.h
-   guid_to_name.h htable.h ini.h lex.h lib.h lockmgr.h
+		crypto.h crypto_cache.h devlock.h dlist.h fnmatch.h
+		guid_to_name.h htable.h ini.h lex.h lib.h lockmgr.h
    md5.h mem_pool.h message.h mntent_cache.h parse_conf.h
    plugins.h qualified_resource_name_type_converter.h queue.h rblist.h
    runscript.h rwlock.h scsi_crypto.h scsi_lli.h scsi_tapealert.h sellist.h
-   serial.h sha1.h smartall.h status.h tls.h tls_conf.h tree.h var.h
-   watchdog.h workq.h)
+		serial.h sha1.h smartall.h status.h tls.h tls_conf.h tree.h var.h
+		watchdog.h workq.h)
 
 INSTALL(FILES ${INCLUDE_FILES} DESTINATION ${includedir})
 

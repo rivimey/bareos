@@ -491,12 +491,20 @@ typedef enum
    ITEM_HELP       /* use help item=xxx and detect all arguments */
 } cpl_item_t;
 
+/* Generator function for command completion.  STATE lets us know whether
+ * to start from scratch; without any state (i.e. STATE == 0), then we
+ * start at the top of the list.
+ */
 static char *item_generator(const char *text, int state,
                             const char *item, cpl_item_t type)
 {
   static int list_index, len;
   char *name;
 
+  /* If this is a new word to complete, initialize now.  This includes
+   * saving the length of TEXT for efficiency, and initializing the index
+   *  variable to 0.
+   */
   if (!state)
   {
      list_index = 0;
@@ -511,6 +519,7 @@ static char *item_generator(const char *text, int state,
      }
   }
 
+  /* Return the next name which partially matches from the command list. */
   while (items && list_index < items->list.size())
   {
      name = (char *)items->list[list_index];
