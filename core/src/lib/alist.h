@@ -54,9 +54,9 @@
 
 #else
 #define foreach_alist(var, list) \
-        for ( list ? (*((void **)&(var))=(void*)((list)->first())) : NULL; \
+        for ( (*((void **)&(var)) = (list ? (void*)((list)->first()) : NULL)); \
               (var); \
-              (*((void **)&(var))=(void*)((list)->next())) )
+              (*((void **)&(var)) = (void*)((list)->next())) )
 
 
 #define foreach_alist_index(inx, var, list) \
