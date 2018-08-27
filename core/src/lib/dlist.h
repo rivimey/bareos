@@ -190,6 +190,7 @@ class dlistString
 {
 public:
    char *c_str() { return str_; }
+   dlink *get_link() { return &link_; };
 
 private:
 #ifdef __clang__
