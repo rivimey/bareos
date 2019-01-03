@@ -328,3 +328,6 @@ cscope.out
 /core/src/win32/tools/bregexres.rc
 /core/src/win32/tools/bsmtpres.rc
 /core/src/win32/tools/bwildres.rc
+/core/platforms/darwin/bareos-dir
+/core/platforms/darwin/bareos-fd
+/core/platforms/darwin/bareos-sd
