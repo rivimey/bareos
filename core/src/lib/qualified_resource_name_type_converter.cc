@@ -19,11 +19,11 @@
    02110-1301, USA.
 */
 
-#include "qualified_resource_name_type_converter.h"
-
 #include <sstream>
 #include <algorithm>
 #include <iterator>
+
+#include "qualified_resource_name_type_converter.h"
 
 template <class T1, class T2>
 std::map<T2, T1> swapPairs(std::map<T1, T2> m)
